@@ -1,25 +1,28 @@
 import express, { Request, Response } from 'express';
-import { UserController } from '../controller/UserController';
+import UserController from '../controller/UserController';
 
-const User = new UserController();
+const router = express.Router();
 
+router.post('/', (req: Request, res: Response) => {
+    new UserController().index(req, res);  
+});
 
-export const router = express.Router();
+router.post('/register', (req: Request, res: Response) => {
+    new UserController().register(req, res);
+});
 
-router.post('/', User.index);
+// router.get('/:id_user/tasks/', User.getAll);
 
-router.post('/register', User.register);
+// router.get('/:id_user/tasks/:id', User.getOne);
 
-router.get('/:id_user/tasks/', User.getAll);
+// router.post('/:id_user/tasks/', User.add);
 
-router.get('/:id_user/tasks/:id', User.getOne);
+// router.put('/:id_user/tasks/:id', User.update);
 
-router.post('/:id_user/tasks/', User.add);
+// router.delete('/:id_user/tasks/:id', User.update);
 
-router.put('/:id_user/tasks/:id', User.update);
+// router.get('/teste', User.archive);
 
-router.delete('/:id_user/tasks/:id', User.update);
+// router.get('/teste2', User.exemple);
 
-router.get('/teste', User.archive);
-
-router.get('/teste2', User.exemple);
+export default router;
