@@ -1,5 +1,5 @@
-import { Tasks } from "./TaskModel";
 import { v4 as uuidv4 } from 'uuid';
+import { Tasks } from './TaskModel';
 
 
 
@@ -7,14 +7,12 @@ export class User {
     private _id: string;
     private _name: string;
     private _pass: string;
-    private _Rpass: string;
     private _tasks: Tasks[];
 
-    constructor(n: string, p: string, rp: string) {
+    constructor(n: string, p: string) {
         this._id = uuidv4();
         this._name = n;
         this._pass = p;
-        this._Rpass = rp;
         this._tasks = [];
     }
 
@@ -28,9 +26,6 @@ export class User {
     public get pass() {
         return this._pass;
     }
-    public get Rpass() {
-        return this._Rpass;
-    }
     public get tasks() {
         return this._tasks;
     }
@@ -41,10 +36,7 @@ export class User {
     public set pass(pass: string) {
         this._pass = pass;
     }
-    public set Rpass(Rpass: string) {
-        this._Rpass = Rpass;
-    }
-    public setTasks(task : Tasks) {
+    public addTask(task: Tasks){
         this._tasks.push(task);
     }
 }
